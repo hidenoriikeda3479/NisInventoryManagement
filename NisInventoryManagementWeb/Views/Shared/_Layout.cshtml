@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MyApp</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- サイドメニュー -->
+            <div class="col-md-2">
+                @await Html.PartialAsync("_Sidebar")
+            </div>
+
+            <!-- コンテンツ -->
+            <div class="col-md-10">
+                <main role="main" class="pt-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+        <footer class="footer mt-auto py-3 bg-light text-center">
+            <div class="container">
+                <span class="text-muted">© 2024 MyApp</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- スクリプトのセクションを追加 -->
+    @RenderSection("Scripts", required: false)
+
+    <!-- 必要なスクリプト -->
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

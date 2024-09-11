@@ -1,0 +1,28 @@
+﻿@model IEnumerable<NisInventoryManagementMvc.Models.ProductViewModel>
+
+<h2>商品一覧</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>商品名</th>
+            <th>価格</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductName</td>
+                <td>@product.Price</td>
+                <td>
+                    <a href="@Url.Action("Details", "Products", new { id = product.ProductId })">詳細</a> |
+                    <a href="@Url.Action("Delete", "Products", new { id = product.ProductId })">削除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Products")" class="btn btn-primary">新規作成</a>
