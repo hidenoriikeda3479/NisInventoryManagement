@@ -3,18 +3,18 @@
 <h2>商品詳細</h2>
 
 <div class="form-group">
-    <label>商品ID:</label>
-    <p>@Model.ProductId</p>
+    <label>@Html.DisplayNameFor(model => model.ProductId)</label>
+    <p>@Html.DisplayFor(model => model.ProductId)</p>
 </div>
 
 <div class="form-group">
-    <label>商品名:</label>
-    <p>@Model.ProductName</p>
+    <label>@Html.DisplayNameFor(model => model.ProductName)</label>
+    <p>@Html.DisplayFor(model => model.ProductName)</p>
 </div>
 
 <div class="form-group">
-    <label>価格:</label>
-    <p>@Model.Price</p>
+    <label>@Html.DisplayNameFor(model => model.Price)</label>
+    <p>@Html.DisplayFor(model => model.Price)</p>
 </div>
 
 <a asp-action="Index" class="btn btn-primary">戻る</a>
