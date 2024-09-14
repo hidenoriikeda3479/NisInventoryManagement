@@ -51,6 +51,18 @@ namespace NisInventoryManagementMvc.Services
         }
 
         /// <summary>
+        /// 商品名とIDで商品を検索
+        /// </summary>
+        /// <param name="id">商品ID</param>
+        /// <param name="productName">商品名</param>
+        /// <returns>HTTPレスポンス</returns>
+        public async Task<IEnumerable<ProductViewModel>?> SearchProductsAsync(int? id, string? productName)
+        {
+            // クエリパラメータ付きでAPIにリクエストを送信
+            return await _httpClient.GetFromJsonAsync<IEnumerable<ProductViewModel>>($"https://localhost:7129/api/products?productName={productName}&id={id}");
+        }
+
+        /// <summary>
         /// 商品を削除
         /// </summary>
         /// <param name="id">商品ID</param>
