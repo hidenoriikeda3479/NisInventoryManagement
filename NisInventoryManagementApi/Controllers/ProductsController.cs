@@ -46,7 +46,7 @@ namespace NisInventoryManagementApi.Controllers
         public async Task<ActionResult<ProductMaster>> GetProduct(int id)
         {
             // 指定されたIDの商品をデータベースから検索
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.FirstOrDefaultAsync(n => n.ProductId == id);
 
             // 商品が見つからない場合は404を返す
             if (product == null)

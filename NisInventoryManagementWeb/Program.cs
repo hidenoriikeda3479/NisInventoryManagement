@@ -1,4 +1,5 @@
 using NisInventoryManagementMvc.Services;
+using NisInventoryManagementWeb.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddControllersWithViews();
 // Service DI
 builder.Services.AddHttpClient<ProductService>();
 builder.Services.AddScoped<ProductService>();
+builder.Services.AddHttpClient<ArrivalService>();
+builder.Services.AddScoped<ArrivalService>();
 
 var app = builder.Build();
 

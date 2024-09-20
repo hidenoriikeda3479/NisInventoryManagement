@@ -1,0 +1,58 @@
+﻿@model IEnumerable<NisInventoryManagementMvc.Models.ArrivalViewModel>
+
+<h2>入荷一覧</h2>
+
+<!-- 検索フォーム -->
+<!-- asp-action="Search" で CompaniessController の Search アクションを指定しています -->
+<form asp-action="Search" method="get">
+    <p>
+        <!-- 商品名の入力欄 -->
+        商品名: <input type="text" name="productName" />
+        <!-- 会社名の入力欄 -->
+        入荷日: <input type="date" name="receiptDate" />
+        <!-- 検索ボタン -->
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiptDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var arrival in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => arrival.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => arrival.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => arrival.ReceiptDate)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-receiptid="@arrival.ReceiptId">編集</a> |
+                    <a asp-action="Delete" asp-route-receiptid="@arrival.ReceiptId">削除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-controller="Products" asp-action="Index">商品一覧画面に戻る</a>
+    <a asp-action="Index">入荷一覧画面に戻る</a>
+</div>
+

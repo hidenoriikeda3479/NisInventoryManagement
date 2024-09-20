@@ -26,7 +26,8 @@
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@product.ProductId">詳細</a> |
-                    <a asp-action="Delete" asp-route-id="@product.ProductId">削除</a>
+                    <a asp-action="Delete" asp-route-id="@product.ProductId">削除</a> |
+                    <a asp-controller="Arrival" asp-action="Create" asp-route-productId="@product.ProductId">入荷</a>
                 </td>
             </tr>
         }
