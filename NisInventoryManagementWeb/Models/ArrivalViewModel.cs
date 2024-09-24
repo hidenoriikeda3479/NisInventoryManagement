@@ -29,6 +29,7 @@ namespace NisInventoryManagementMvc.Models
         /// <summary>
         /// 入荷日
         /// </summary>
+        [Required(ErrorMessage ="日付を設定してください")]
         [DisplayName("入荷日")]
         public DateTime? ReceiptDate { get; set; }
 

@@ -20,7 +20,7 @@ namespace NisInventoryManagementWeb.Controllers
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="arrivalService">入荷のサービス</param>
+        /// <param name="arrivalService">入荷サービス</param>
         public ArrivalController(ArrivalService arrivalService)
         {
             _arrivalService = arrivalService;
@@ -43,12 +43,12 @@ namespace NisInventoryManagementWeb.Controllers
         /// <summary>
         /// 入荷情報検索
         /// </summary>
-        /// <param name="productName"></param>
-        /// <param name="receiptDate"></param>
+        /// <param name="productName">商品名</param>
+        /// <param name="receiptDate">入荷日</param>
         /// <returns>入荷一覧ページ</returns>
         public async Task<ActionResult> Search(string productName, DateTime? receiptDate)
         {
-            // 商品名と入荷日に当てはまる入荷情報を検査機
+            // 商品名と入荷日に当てはまる入荷情報を検索
             var arrival = await _arrivalService.GetArrivalByNameDateAsync(productName, receiptDate);
 
             // 取得した入荷情報をビューに渡す
@@ -58,14 +58,14 @@ namespace NisInventoryManagementWeb.Controllers
         /// <summary>
         /// 入荷情報更新
         /// </summary>
-        /// <param name="receiptId"></param>
-        /// <param name="quantity"></param>
-        /// <param name="receiptDate"></param>
+        /// <param name="receiptId">入荷ID</param>
+        /// <param name="quantity">入荷数</param>
+        /// <param name="receiptDate">入荷日</param>
         /// <returns>入荷情報更新</returns>
         public async Task<ActionResult> Update(int receiptId,int quantity, DateTime? receiptDate)
         {
             // 指定の入荷IDの情報を取得
-            var arrival = await _arrivalService.GetArrivalByIdAsync(receiptId);
+            var arrival = await _arrivalService.GetArrivalByReceiptIdAsync(receiptId);
 
             // 変更後の入荷数と入荷日を代入
             arrival!.Quantity = quantity;
@@ -88,12 +88,12 @@ namespace NisInventoryManagementWeb.Controllers
         /// <summary>
         /// 入荷詳細ページ
         /// </summary>
-        /// <param name="receiptId"></param>
+        /// <param name="receiptId">入荷ID</param>
         /// <returns>入荷情報編集ページ</returns>
         public　async Task<ActionResult> Details(int receiptId)
         {
 
-            var arrival = await _arrivalService.GetArrivalByIdAsync(receiptId);
+            var arrival = await _arrivalService.GetArrivalByReceiptIdAsync(receiptId);
 
             return View(arrival);
         }
@@ -102,7 +102,7 @@ namespace NisInventoryManagementWeb.Controllers
         /// <summary>
         /// 入荷登録
         /// </summary>
-        /// <param name="arrival"></param>
+        /// <param name="arrival">入荷データ</param>
         /// <returns>成功時は入荷一覧画面、失敗時は登録画面</returns>
         [HttpPost]
         public async Task<IActionResult> Create(ArrivalViewModel arrival)
@@ -130,7 +130,7 @@ namespace NisInventoryManagementWeb.Controllers
         public async Task<IActionResult> Create(int productId)
         {
             // 受取ったIDで商品情報取得
-            var product = await _arrivalService.GetArrivalByProductAsync(productId);
+            var product = await _arrivalService.GetArrivalByProductIdAsync(productId);
 
             // 商品IDと商品名を格納
             var arrival = new ArrivalViewModel

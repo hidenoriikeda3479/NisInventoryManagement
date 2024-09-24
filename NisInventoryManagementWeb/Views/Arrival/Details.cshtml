@@ -1,55 +1,43 @@
 ﻿@model NisInventoryManagementMvc.Models.ArrivalViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "入荷編集";
 }
 
-<h1>入荷情報編集</h1>
+<h4>入荷情報編集</h4>
 
 <div>
-    <h4>ArrivalViewModel</h4>
-    <hr />
-    <form asp-action="Update">
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class="col-sm-4">
-            @Html.DisplayFor(model => model.ProductName)
+    <form asp-action="Update" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label>@Html.DisplayNameFor(model => model.ProductName)</label>
+            <p>@Html.DisplayFor(model => model.ProductName)</p>
             <input type="hidden" asp-for="ReceiptId" />
             <span asp-validation-for="ReceiptId" class="text-danger"></span>
-        </dd>
-        <dd class="col-sm-6">
-        </dd>
-        <dt class = "col-sm-2">
+        </div>
+        <div class="form-group">
             @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-4">
             <input asp-for="Quantity" class="form-control" />
             <span asp-validation-for="Quantity" class="text-danger"></span>
-
-        </dd>
-        <dd class="col-sm-6">
-        </dd>
-        <dt class = "col-sm-2">
+        </div>
+        <div class="form-group">
             @Html.DisplayNameFor(model => model.ReceiptDate)
-        </dt>
-        <dd class = "col-sm-4">
             <input asp-for="ReceiptDate" class="form-control" />
             <span asp-validation-for="ReceiptDate" class="text-danger"></span>
-        </dd>
-        <dd class="col-sm-6">
-        </dd>
-    </dl>
-    <p>
-    <input type="submit" value="Update" class="btn btn-primary" />
-</p>
-        </form>
-
-
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
 
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">戻る</a>
 </div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -150,7 +150,7 @@ namespace NisInventoryManagementApi.Controllers
             // 指定されたIDの入荷情報をデータベースから検索
             var before = await _context.StockReceipts.Include(n => n.Product).FirstOrDefaultAsync(s => s.ReceiptId == arrival.ReceiptId);
 
-            // 商品が見つからない場合は404を返す
+            // 入荷情報が見つからない場合は404を返す
             if (arrival == null)
             {
                 return NotFound();
@@ -163,6 +163,7 @@ namespace NisInventoryManagementApi.Controllers
             // 更新したデータをコミット
             await _context.SaveChangesAsync();
             
+            // 更新後全件取得
             var aaa = await _context.StockReceipts.Include(n => n.Product).Select(n => new StockReceiptResponseModel()
             {
                 ReceiptId = n.ReceiptId,

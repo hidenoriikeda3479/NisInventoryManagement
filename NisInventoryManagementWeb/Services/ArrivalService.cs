@@ -14,6 +14,10 @@ namespace NisInventoryManagementWeb.Services
     {
         private readonly HttpClient _httpClient;
 
+        /// <summary>
+        ///  コンテキスト
+        /// </summary>
+        /// <param name="httpClient">HTTPクライアント</param>
         public ArrivalService(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -25,6 +29,7 @@ namespace NisInventoryManagementWeb.Services
         /// <returns>入荷のリスト</returns>
         public async Task<IEnumerable<ArrivalViewModel>?> GetArrivalAsync()
         {
+            // Web APIから入荷情報を全件取得
             return await _httpClient.GetFromJsonAsync<IEnumerable<ArrivalViewModel>>("https://localhost:7129/api/arrival");
         }
 
@@ -43,10 +48,9 @@ namespace NisInventoryManagementWeb.Services
         /// <summary>
         /// 入荷IDで入荷情報を取得
         /// </summary>
-        /// <param name="name">商品名</param>
-        /// <param name="date">入荷日</param>
+        /// <param name="id">入荷ID</param>
         /// <returns>指定された商品の情報</returns>
-        public async Task<ArrivalViewModel?> GetArrivalByIdAsync(int id)
+        public async Task<ArrivalViewModel?> GetArrivalByReceiptIdAsync(int id)
         {
             // Web APIから指定IDの商品を取得
             return await _httpClient.GetFromJsonAsync<ArrivalViewModel>($"https://localhost:7129/api/arrival/{id}");
@@ -57,7 +61,7 @@ namespace NisInventoryManagementWeb.Services
         /// </summary>
         /// <param name="id">商品ID</param>
         /// <returns>指定された商品の情報</returns>
-        public async Task<ProductViewModel?> GetArrivalByProductAsync(int id)
+        public async Task<ProductViewModel?> GetArrivalByProductIdAsync(int id)
         {
             // Web APIから指定IDの商品を取得
             return await _httpClient.GetFromJsonAsync<ProductViewModel>($"https://localhost:7129/api/products/{id}");
@@ -77,7 +81,7 @@ namespace NisInventoryManagementWeb.Services
         /// <summary>
         /// 入荷を登録
         /// </summary>
-        /// <param name="quantity">入荷登録情報</param>
+        /// <param name="arrival">入荷登録情報</param>
         /// <returns>HTTPレスポンス</returns>
         public async Task<HttpResponseMessage> UpdateArrivalAsync(ArrivalViewModel arrival)
         {

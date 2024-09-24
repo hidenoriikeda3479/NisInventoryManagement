@@ -2,15 +2,12 @@
 
 <h2>入荷一覧</h2>
 
-<!-- 検索フォーム -->
-<!-- asp-action="Search" で CompaniessController の Search アクションを指定しています -->
 <form asp-action="Search" method="get">
     <p>
-        <!-- 商品名の入力欄 -->
-        商品名: <input type="text" name="productName" />
-        <!-- 会社名の入力欄 -->
-        入荷日: <input type="date" name="receiptDate" />
-        <!-- 検索ボタン -->
+        @Html.DisplayNameFor(model => model.ProductName)
+        <input type="text" name="productName" />
+        @Html.DisplayNameFor(model => model.Quantity)
+        <input type="date" name="receiptDate" />
         <input type="submit" value="Search" />
     </p>
 </form>
@@ -27,6 +24,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ReceiptDate)
+            </th>
+            <th>
+
             </th>
         </tr>
     </thead>
@@ -52,7 +52,6 @@
     </tbody>
 </table>
 <div>
-    <a asp-controller="Products" asp-action="Index">商品一覧画面に戻る</a>
-    <a asp-action="Index">入荷一覧画面に戻る</a>
+    <a asp-action="Index">一覧画面に戻る</a>
 </div>
 
