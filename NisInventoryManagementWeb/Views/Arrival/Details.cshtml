@@ -6,29 +6,31 @@
 
 <h4>入荷情報編集</h4>
 <hr />
-<div class="col-md-4">
-    <form asp-action="Update" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label>@Html.DisplayNameFor(model => model.ProductName)</label>
-            <p>@Html.DisplayFor(model => model.ProductName)</p>
-            <input type="hidden" asp-for="ReceiptId" />
-            <span asp-validation-for="ReceiptId" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            @Html.DisplayNameFor(model => model.Quantity)
-            <input asp-for="Quantity" class="form-control" />
-            <span asp-validation-for="Quantity" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            @Html.DisplayNameFor(model => model.ReceiptDate)
-            <input asp-for="ReceiptDate" class="form-control" />
-            <span asp-validation-for="ReceiptDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Update" class="btn btn-primary" />
-        </div>
-    </form>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label>@Html.DisplayNameFor(model => model.ProductName)</label>
+                <p>@Html.DisplayFor(model => model.ProductName)</p>
+                <input type="hidden" asp-for="ReceiptId" />
+                <span asp-validation-for="ReceiptId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.Quantity)
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.ReceiptDate)
+                <input asp-for="ReceiptDate" class="form-control" />
+                <span asp-validation-for="ReceiptDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
 
 <div>
