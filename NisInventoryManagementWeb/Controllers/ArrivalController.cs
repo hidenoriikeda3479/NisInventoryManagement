@@ -26,7 +26,6 @@ namespace NisInventoryManagementWeb.Controllers
             _arrivalService = arrivalService;
         }
 
-        // GET: ArrivalController
         /// <summary>
         /// 入荷リストを表示
         /// </summary>
@@ -84,7 +83,6 @@ namespace NisInventoryManagementWeb.Controllers
             return View(updateArrival);
         }
 
-        // GET: ArrivalController/Details/5
         /// <summary>
         /// 入荷詳細ページ
         /// </summary>
@@ -98,7 +96,6 @@ namespace NisInventoryManagementWeb.Controllers
             return View(arrival);
         }
 
-        // GET: ArrivalController/Create
         /// <summary>
         /// 入荷登録
         /// </summary>

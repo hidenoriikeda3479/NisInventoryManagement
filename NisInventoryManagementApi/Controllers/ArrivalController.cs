@@ -162,9 +162,9 @@ namespace NisInventoryManagementApi.Controllers
 
             // 更新したデータをコミット
             await _context.SaveChangesAsync();
-            
+
             // 更新後全件取得
-            var aaa = await _context.StockReceipts.Include(n => n.Product).Select(n => new StockReceiptResponseModel()
+            return await _context.StockReceipts.Include(n => n.Product).Select(n => new StockReceiptResponseModel()
             {
                 ReceiptId = n.ReceiptId,
                 ProductId = n.ProductId,
@@ -172,9 +172,6 @@ namespace NisInventoryManagementApi.Controllers
                 Quantity = n.Quantity,
                 ReceiptDate = n.ReceiptDate
             }).ToListAsync();
-
-            // データベースからすべての入荷情報を非同期で取得
-            return aaa;
         }
 
         /// <summary>
